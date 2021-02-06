@@ -13,8 +13,8 @@ router.get('/', (req, res) => {
     //   console.log('hbsObject', hbsObject);
     //   res.render('index', hbsObject);
     // });
-    res.send("WORKING")
-
+    // res.send("WORKING")
+    res.render('index')
 });
 
 
