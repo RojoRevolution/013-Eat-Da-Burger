@@ -27,8 +27,7 @@ const objToSql = (ob) => {
 // ORM 
 const orm = {
     all(tableInput, cb) {
-        console.log('LOGGING FROM /config/orm.js');
-        const query = `SELECT * FROM ${tableInput}`;
+        const query = `SELECT * FROM ${tableInput};`;
         connection.query(query, (err, result) => {
             if (err) throw err
             cb(result)
