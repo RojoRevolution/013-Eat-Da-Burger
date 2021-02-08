@@ -2,11 +2,9 @@ const connection = require('./connection.js');
 
 const printQuestionMarks = (num) => {
     const arr = [];
-
     for (let i = 0; i < num; i++) {
         arr.push('?');
     }
-
     return arr.toString();
 };
 
@@ -27,10 +25,42 @@ const objToSql = (ob) => {
 // ORM 
 const orm = {
     all(tableInput, cb) {
-        const query = `SELECT * FROM ${tableInput};`;
-        connection.query(query, (err, result) => {
-            if (err) throw err
-            cb(result)
+        const queryString = `SELECT * FROM ${tableInput};`;
+        connection.query(queryString, (err, result) => {
+            if (err) {
+                throw err;
+            }
+            cb(result);
+        });
+    },
+    update(table, objColVals, condition, cb) {
+        let queryString = `UPDATE ${table}`;
+
+        queryString += ' SET ';
+        queryString += objToSql(objColVals);
+        queryString += ' WHERE ';
+        queryString += condition;
+
+        console.log(queryString);
+        connection.query(queryString, (err, result) => {
+            if (err) {
+                throw err;
+            }
+
+            cb(result);
+        });
+    },
+    delete(table, condition, cb) {
+        let queryString = `DELETE FROM ${table}`;
+        queryString += ' WHERE ';
+        queryString += condition;
+
+        connection.query(queryString, (err, result) => {
+            if (err) {
+                throw err;
+            }
+
+            cb(result);
         });
     },
 };
