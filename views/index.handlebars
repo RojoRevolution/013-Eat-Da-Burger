@@ -14,6 +14,11 @@
         <div class="col-lg-6 text-center">
             <div class="burger-card">
                 <h2>Burgers I want to eat</h2>
+                <ul>
+                    {{#each burgers}}
+                    {{> burgers/burger-list}}
+                    {{/each}}
+                </ul>
             </div>
         </div>
         <div class="col-lg-6 text-center">
