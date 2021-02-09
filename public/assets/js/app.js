@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             button.addEventListener('click', (event) => {
                 const id = event.target.getAttribute('data-id');
                 console.log("click data-id:" + id);
-                const newEaten = event.target.getAttribute('data-eat');
+                const newEaten = event.target.getAttribute('data-eaten');
                 console.log("click data-eat" + newEaten);
 
                 const eatenState = {
@@ -40,15 +40,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
         })
     };
 
-    const submitBtn = document.getElementById('submit');
+    const addBurgerBtn = document.getElementById('create-form');
+    const enteredBurger = document.getElementById('enterBurger');
 
-    if (submitBtn) {
-        submitBtn.addEventListener('submit', (event) => {
+    if (addBurgerBtn) {
+        addBurgerBtn.addEventListener('submit', (event) => {
             event.preventDefault();
 
             // Grabs the value of the textarea that goes by the name, "quote"
             const newBurger = {
-                burger_name: submitBtn.value.trim(),
+                burger_name: enteredBurger.value.trim(),
+                eaten: 0,
             };
 
             // Send POST request to create a new quote
@@ -63,12 +65,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 body: JSON.stringify(newBurger),
             }).then(() => {
                 // Empty the form
-                console.log(submitBtn.value.trim())
+                // console.log(submitBtn.value.trim())
                 // document.getElementById('submit').value = '';
 
                 // Reload the page so the user can see the new quote
-                console.log('Added a new burger!');
-                // location.reload();
+                // Alert('Added: ' + submitBtn.value.trim());
+                location.reload();
             });
         });
     }
