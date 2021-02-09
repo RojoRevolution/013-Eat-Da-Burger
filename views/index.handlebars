@@ -4,7 +4,7 @@
         <div class="mb-3">
             <input type="text" class="form-control placeholder-center" id="enterBurger"
                 placeholder="Enter A Burger Name">
-            <button type="submit" class="btn btn-warning my-3 submitBtn">Submit</button>
+            <button id="submit" type="submit" class="btn btn-warning my-3 submitBtn">Submit</button>
         </div>
     </form>
 </section>
@@ -16,7 +16,9 @@
                 <h2>Burgers I want to eat</h2>
                 <ul>
                     {{#each burgers}}
-                    {{> burgers/burger-list}}
+                    {{#unless eaten}}
+                    {{> burgers/burger-list eaten=true}}
+                    {{/unless}}
                     {{/each}}
                 </ul>
             </div>
@@ -24,6 +26,13 @@
         <div class="col-lg-6 text-center">
             <div class="burger-card">
                 <h2>Burgers I have eaten</h2>
+                <ul>
+                    {{#each burgers}}
+                    {{#if eaten}}
+                    {{> burgers/burger-list eaten=false}}
+                    {{/if}}
+                    {{/each}}
+                </ul>
             </div>
         </div>
     </div>
