@@ -6,7 +6,7 @@ const router = express.Router();
 const burger = require('../models/burger.js');
 
 router.get('/', (req, res) => {
-    burger.all((data) => {
+    burger.selectAll((data) => {
         const hbsObject = {
             burgers: data,
         };
@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/api/burgers', (req, res) => {
-    burger.create(['burger_name', 'eaten'], [req.body.burger_name, req.body.eaten], (result) => {
+    burger.insertOne(['burger_name', 'eaten'], [req.body.burger_name, req.body.eaten], (result) => {
         // Send back the ID of the new quote
         res.json({ id: result.insertId });
     });
@@ -27,7 +27,7 @@ router.put('/api/burgers/:id', (req, res) => {
 
     console.log('condition', condition);
 
-    burger.update(
+    burger.updateOne(
         {
             eaten: req.body.eaten,
         },

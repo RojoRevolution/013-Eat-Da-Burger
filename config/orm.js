@@ -24,7 +24,7 @@ const objToSql = (ob) => {
 
 // ORM 
 const orm = {
-    all(tableInput, cb) {
+    selectAll(tableInput, cb) {
         const queryString = `SELECT * FROM ${tableInput};`;
         connection.query(queryString, (err, result) => {
             if (err) {
@@ -33,7 +33,7 @@ const orm = {
             cb(result);
         });
     },
-    create(table, cols, vals, cb) {
+    insertOne(table, cols, vals, cb) {
         let queryString = `INSERT INTO ${table}`;
 
         queryString += ' (';
@@ -53,7 +53,7 @@ const orm = {
             cb(result);
         });
     },
-    update(table, objColVals, condition, cb) {
+    updateOne(table, objColVals, condition, cb) {
         let queryString = `UPDATE ${table}`;
 
         queryString += ' SET ';
