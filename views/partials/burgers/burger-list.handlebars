@@ -1,7 +1,8 @@
 <li>
+    {{#if eaten}}
     <button class="btn btn-warning change-status burger-btn" data-id="{{id}}" data-eaten="{{eaten}}">
-        {{#if eaten}} Eat! {{else}} Puke {{/if}}
+        Eat!
     </button>
+    {{/if}}
     {{burger_name}}
-
 </li>
