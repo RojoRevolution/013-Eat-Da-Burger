@@ -1,7 +1,9 @@
 # :hamburger: 013-Eat-Da-Burger
 Web app built with MySQL and Node.js (Express / Handlebars)
 
-![Image of Employee Tracker App](images/emplpyee_tracker_app.png)
+[Deployed Live on Heroku](https://eat-da-burger-rojo.herokuapp.com/)
+
+![Image of Employee Tracker App](readme-images/eat-da-burger.gif)
 
 # :zap: Description
 This is a web app built with Node.js app that incorporates the use of a database through MySQL. The main purpose of the app was to gain familiarity with ORMs as well as templating through Handlebars.js.
