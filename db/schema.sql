@@ -8,6 +8,6 @@ USE burger_app_db;
 CREATE TABLE burgers(
   id INT NOT NULL AUTO_INCREMENT primary key,
   burger_name VARCHAR(100),
-  eaten BOOLEAN DEFAULT false,
+  eaten BOOLEAN DEFAULT false
 );
 
