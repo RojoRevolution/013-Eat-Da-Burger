@@ -4,16 +4,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
         console.info('DOM loaded');
     }
 
+    // Variable for the "Eat" button
     const devourBtns = document.querySelectorAll('.burger-btn');
 
     //Devour Buttons
     if (devourBtns) {
         devourBtns.forEach((button) => {
             button.addEventListener('click', (event) => {
+                // Variables for the button id and the boolean value of "eaten"
                 const id = event.target.getAttribute('data-id');
-                console.log("click data-id:" + id);
                 const newEaten = event.target.getAttribute('data-eaten');
-                console.log("click data-eat" + newEaten);
 
                 const eatenState = {
                     eaten: newEaten,
@@ -28,9 +28,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     body: JSON.stringify(eatenState),
                 }).then((response) => {
                     // Check that the response is all good
-                    // Reload the page so the user can see the new quote
                     if (response.ok) {
-                        console.log(`changed eat to: ${newEaten}`);
+                        // Reload the page so the user can see the new burger
                         location.reload('/');
                     } else {
                         alert('something went wrong!');
@@ -40,39 +39,36 @@ document.addEventListener('DOMContentLoaded', (event) => {
         })
     };
 
+    // Add new input + submit button variables
     const addBurgerBtn = document.getElementById('create-form');
     const enteredBurger = document.getElementById('enterBurger');
 
     if (addBurgerBtn) {
         addBurgerBtn.addEventListener('submit', (event) => {
+            // Using a form so prevent the default behavior
             event.preventDefault();
 
-            // Grabs the value of the textarea that goes by the name, "quote"
+            // Grabs the value of the input field
             const newBurger = {
                 burger_name: enteredBurger.value.trim(),
                 eaten: 0,
             };
 
-            // Send POST request to create a new quote
+            // Send POST request to create a item in DB based on the name in the input field
             fetch('/api/burgers', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
                 },
-
-                // make sure to serialize the JSON body
                 body: JSON.stringify(newBurger),
             }).then(() => {
                 // Empty the form
-                // console.log(submitBtn.value.trim())
-                // document.getElementById('submit').value = '';
+                enteredBurger.value = '';
 
-                // Reload the page so the user can see the new quote
-                // Alert('Added: ' + submitBtn.value.trim());
+                // Reload the page
                 location.reload();
             });
         });
     }
-
 });

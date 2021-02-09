@@ -5,16 +5,17 @@ const router = express.Router();
 // This will be the Database functions that use the ORMs
 const burger = require('../models/burger.js');
 
+// Get items from DB and respond with the index file
 router.get('/', (req, res) => {
     burger.selectAll((data) => {
         const hbsObject = {
             burgers: data,
         };
-        console.log(hbsObject);
         res.render('index', hbsObject);
     });
 });
 
+// Create new items and send them to DB
 router.post('/api/burgers', (req, res) => {
     burger.insertOne(['burger_name', 'eaten'], [req.body.burger_name, req.body.eaten], (result) => {
         // Send back the ID of the new quote
@@ -22,11 +23,11 @@ router.post('/api/burgers', (req, res) => {
     });
 });
 
+// Update items in the DB
 router.put('/api/burgers/:id', (req, res) => {
     const condition = `id = ${req.params.id}`;
-
-    console.log('condition', condition);
-
+    // console.log('condition', condition);
+    // Update the status of eaten
     burger.updateOne(
         {
             eaten: req.body.eaten,
