@@ -1,4 +1,4 @@
-# :burger: 013-Eat-Da-Burger
+# :hamburger: 013-Eat-Da-Burger
 Web app built with MySQL and Node.js (Express / Handlebars)
 
 ![Image of Employee Tracker App](images/emplpyee_tracker_app.png)
